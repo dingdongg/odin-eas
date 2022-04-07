@@ -2,15 +2,17 @@
 
 let GRID_LENGTH = 16;
 
-let body = document.querySelector('body');
+let container = document.querySelector('.grid-container');
 
 // for each row, create GRID_LENGTH divs
 for (let i = 0; i < GRID_LENGTH; i++) {
     let rowStartDiv = document.createElement('div');
-    for (let j = 1; j < GRID_LENGTH; j++) {
+    rowStartDiv.classList.add("row");
+    for (let j = 0; j < GRID_LENGTH; j++) {
         let toAppend = document.createElement('div');
+        toAppend.classList.add("row-cell");
         rowStartDiv.appendChild(toAppend);
     }
-    body.appendChild(rowStartDiv);
+    container.appendChild(rowStartDiv);
 }
 

@@ -1,0 +1,18 @@
+.grid-container {
+    padding: 10px;
+    gap: 5px;
+}
+
+.grid-container, .row {
+    display: inline-grid;
+    gap: 5px;
+    grid-template-columns: auto auto auto auto;
+}
+
+.row-cell {
+    background-color: blue;
+    width: 1px;
+    height: 1px;
+    gap: 5px;
+    padding: 10px;
+}
