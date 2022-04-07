@@ -2,6 +2,10 @@
 
 let GRID_LENGTH = 16;
 
+function changeColor() {
+    this.classList.toggle('hovered');
+}
+
 let container = document.querySelector('.grid-container');
 
 // for each row, create GRID_LENGTH divs
@@ -15,4 +19,14 @@ for (let i = 0; i < GRID_LENGTH; i++) {
     }
     container.appendChild(rowStartDiv);
 }
+
+let cells = document.querySelectorAll('.row-cell');
+
+cells.forEach(cell => {
+    cell.addEventListener('mouseenter', changeColor)
+});
+
+cells.forEach(cell => {
+    cell.addEventListener('mouseleave', changeColor)
+});
 

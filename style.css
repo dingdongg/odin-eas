@@ -16,3 +16,7 @@
     gap: 5px;
     padding: 10px;
 }
+
+.hovered {
+    background-color: lightblue;
+}
