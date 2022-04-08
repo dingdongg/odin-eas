@@ -1,6 +1,11 @@
 // create a 16 x 16 grid of SQUARE <div>s
+let parsedInput;
+do {
+    let userInput = prompt("Enter a grid size (from 1 to 100, inclusive!)");
+    parsedInput = parseInt(userInput);
+} while (parsedInput == NaN || parsedInput < 1 || parsedInput > 100);
 
-let GRID_LENGTH = 16;
+let GRID_LENGTH = parsedInput;
 
 function changeColor() {
     this.classList.toggle('hovered');
