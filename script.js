@@ -1,21 +1,3 @@
-let parsedInput;
-let GRID_LENGTH;
-let container;
-configureGrid();
-
-// HTML element handles
-const RESET_BUTTON = document.createElement('button');
-const BODY = document.querySelector('body');
-const GRID_CONTAINER = document.querySelector('.grid-container');
-
-
-/**
- * sections of code
- * 1. element variables
- * 2. functions
- * 3. code to get website up and running
- */
-
 /**
  * TODO: make it look prettier
  * TODO: add brush color selector
@@ -24,14 +6,14 @@ const GRID_CONTAINER = document.querySelector('.grid-container');
  * TODO: replace prompt() functionality w/ something less annoying
  */
 
+// global variables 
+const RESET_BUTTON = document.createElement('button');
+const GRID_CONTAINER = document.querySelector('.grid-container');
+const BODY = document.querySelector('body');
+let gridLength;
+let parsedInput;
 
-let resetButton = document.createElement('button');
-resetButton.classList.add('reset-button');
-resetButton.textContent = 'Reset grid';
-resetButton.addEventListener('click', configureGrid);
-let body = document.querySelector('body');
-body.insertBefore(resetButton, container);
-
+// functions
 function changeColor() {
     let classes = this.classList.value;
     console.log(classes);
@@ -40,27 +22,46 @@ function changeColor() {
     }
 }
 
+function createCells(numCells) {
+    for (let i = 0; i < numCells; i++) {
+        let cell = document.createElement('div');
+        cell.classList.add("row-cell");
+        cell.addEventListener('mouseenter', changeColor);
+        GRID_CONTAINER.appendChild(cell);
+    }
+}
+
 function configureGrid() {
     do {
         let userInput = prompt("Enter a grid size (from 1 to 100, inclusive!)");
         parsedInput = parseInt(userInput);
     } while (!parsedInput || parsedInput < 1 || parsedInput > 100);
-
-    container = document.querySelector('.grid-container');
     
-    if (container.children.length != 0) {
+    if (GRID_CONTAINER.children.length != 0) {
         let cells = document.querySelectorAll('.row-cell');
         cells.forEach(cell => container.removeChild(cell));
     }
-    GRID_LENGTH = parsedInput;
-    container.setAttribute("style", `grid-template-columns: repeat(${GRID_LENGTH}, 1fr`);
-    let numCells = GRID_LENGTH * GRID_LENGTH;
+    gridLength = parsedInput;
+    GRID_CONTAINER.setAttribute("style", `grid-template-columns: repeat(${gridLength}, 1fr`);
+    let numCells = gridLength * gridLength;
     
-    for (let i = 0; i < numCells; i++) {
-        let cell = document.createElement('div');
-        cell.classList.add("row-cell");
-        cell.addEventListener('mouseenter', changeColor);
-        container.appendChild(cell);
-    }
+    createCells(numCells);
 }
+
+function setUpResetBtn() {
+    RESET_BUTTON.classList.add('reset-button');
+    RESET_BUTTON.textContent = 'Reset grid';
+    RESET_BUTTON.addEventListener('click', configureGrid);
+}
+
+function initPage() {
+    setUpResetBtn();
+    BODY.insertBefore(RESET_BUTTON, GRID_CONTAINER);
+    configureGrid();
+}
+
+
+
+// initialize website
+initPage();
 
