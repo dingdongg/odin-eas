@@ -1,9 +1,6 @@
 /**
  * TODO: make it look prettier
  * TODO: replace prompt() functionality w/ something less annoying
- * 
- * 
- * 
  * TODO: color in pixel only when: a) mouse is passing thru, AND b) mouse is being held down
  */
 
@@ -13,6 +10,7 @@ const RANDOM_COLOR_TOGGLE_BUTTON = document.createElement('button');
 const BRUSH_COLOR_SELECTOR = document.createElement('input');
 const BACK_COLOR_SELECTOR = document.createElement('input');
 
+const BUTTONS_CONTAINER = document.createElement('div');
 const GRID_CONTAINER = document.querySelector('.grid-container');
 const BODY = document.querySelector('body');
 const DEFAULT_GRID_LENGTH = 16;
@@ -106,19 +104,26 @@ function appendColorLabels() {
     backgroundLabel.textContent = 'Background Color';
     backgroundLabel.for = `${BACK_COLOR_SELECTOR.id}`;
 
-    BODY.insertBefore(BRUSH_COLOR_SELECTOR, GRID_CONTAINER);
-    BODY.insertBefore(brushLabel, GRID_CONTAINER);
-    BODY.insertBefore(BACK_COLOR_SELECTOR, GRID_CONTAINER);
-    BODY.insertBefore(backgroundLabel, GRID_CONTAINER);
+    BUTTONS_CONTAINER.appendChild(BRUSH_COLOR_SELECTOR);
+    BUTTONS_CONTAINER.appendChild(brushLabel);
+    BUTTONS_CONTAINER.appendChild(BACK_COLOR_SELECTOR);
+    BUTTONS_CONTAINER.appendChild(backgroundLabel);
+}
+
+function setUpBtnContainer() {
+    // add all buttons to this container
+    BUTTONS_CONTAINER.classList.add('buttons-container');
+    appendColorLabels();
+    BUTTONS_CONTAINER.appendChild(RANDOM_COLOR_TOGGLE_BUTTON);
+    BUTTONS_CONTAINER.appendChild(RESET_BUTTON);
 }
 
 function initPage() {
     setUpResetBtn();
     setUpRanColorBtn();
     setUpSelectors();
-    BODY.insertBefore(RESET_BUTTON, GRID_CONTAINER);
-    BODY.insertBefore(RANDOM_COLOR_TOGGLE_BUTTON, GRID_CONTAINER);
-    appendColorLabels();
+    setUpBtnContainer();
+    BODY.insertBefore(BUTTONS_CONTAINER, GRID_CONTAINER);
     configureGrid();
 }
 
