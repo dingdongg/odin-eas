@@ -1,6 +1,5 @@
 /**
- * TODO: make it look prettier
- * TODO: replace prompt() functionality w/ something less annoying
+ * TODO: finish buttons CSS
  * TODO: color in pixel only when: a) mouse is passing thru, AND b) mouse is being held down
  */
 
@@ -84,15 +83,22 @@ function setUpRanColorBtn() {
     RANDOM_COLOR_TOGGLE_BUTTON.addEventListener('click', toggleRandomColor);
 }
 
+function updateButtonColor() {
+    let colorContainer = this.parentElement;
+    colorContainer.setAttribute("style", `background-color: ${this.value};`);
+}
+
 function setUpSelectors() {
     // set up brush selector
     BRUSH_COLOR_SELECTOR.type = 'color';
     BRUSH_COLOR_SELECTOR.id = 'brush-color';
     BRUSH_COLOR_SELECTOR.value = '#000000';
+    BRUSH_COLOR_SELECTOR.addEventListener('change', updateButtonColor);
     
     BACK_COLOR_SELECTOR.type = 'color';
-    BACK_COLOR_SELECTOR.id = 'background-color';
+    BACK_COLOR_SELECTOR.id = 'bucket-color';
     BACK_COLOR_SELECTOR.value = '#ffffff';
+    BACK_COLOR_SELECTOR.addEventListener('change', updateButtonColor);
     // set up background color selector
 }
 
@@ -107,11 +113,13 @@ function appendColorLabels() {
     brushLabel.for = `${BRUSH_COLOR_SELECTOR.id}`;
 
     let backgroundLabel = document.createElement('label');
-    backgroundLabel.textContent = 'Background Color';
+    backgroundLabel.textContent = 'Bucket Color';
     backgroundLabel.for = `${BACK_COLOR_SELECTOR.id}`;
 
     let brushContainer = document.createElement('div');
     brushContainer.classList.add('color-container');
+    brushContainer.classList.add('brush-color');
+    brushContainer.setAttribute("style", `background-color: ${BRUSH_COLOR_SELECTOR.value};`);
     brushContainer.appendChild(BRUSH_COLOR_SELECTOR);
     brushContainer.appendChild(brushLabel);
     BUTTONS_CONTAINER.appendChild(brushContainer);
@@ -123,6 +131,8 @@ function appendColorLabels() {
 
     let backgroundContainer = document.createElement('div');
     backgroundContainer.classList.add('color-container');
+    backgroundContainer.classList.add('bucket-color');
+    backgroundContainer.setAttribute("style", `background-color: ${BACK_COLOR_SELECTOR.value};`);
     backgroundContainer.appendChild(BACK_COLOR_SELECTOR);
     backgroundContainer.appendChild(bucketButton);
     backgroundContainer.appendChild(backgroundLabel);
