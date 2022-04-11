@@ -3,23 +3,40 @@
  * TODO: add brush color selector
  * TODO: optional random color 
  * TODO: replace prompt() functionality w/ something less annoying
+ * 
+ * 
+ * 
+ * TODO: color in pixel only when: a) mouse is passing thru, AND b) mouse is being held down
  */
 
 // global variables 
 const RESET_BUTTON = document.createElement('button');
+const RANDOM_COLOR_TOGGLE_BUTTON = document.createElement('button');
 const GRID_CONTAINER = document.querySelector('.grid-container');
 const BODY = document.querySelector('body');
 const DEFAULT_GRID_LENGTH = 16;
 let gridLength;
-let parsedInput;
+let randomColorMode = false;
 
 // functions
 function changeColor() {
-    let classes = this.classList.value;
-    console.log(classes);
-    if (!classes.includes('hovered')) {
-        this.classList.toggle('hovered');
+    if (randomColorMode) {
+        let redVal = Math.random() * 255;
+        let blueVal = Math.random() * 255;
+        let greenVal = Math.random() * 255;
+        this.setAttribute("style", `background-color: rgb(${redVal}, ${blueVal}, ${greenVal});`);
+    } else {
+        this.setAttribute("style", `background-color: lightblue;`);
     }
+}
+
+function toggleRandomColor() {
+    if (randomColorMode) {
+        this.textContent = 'Random color off';
+    } else {
+        this.textContent = 'Random color on';
+    }
+    randomColorMode = !randomColorMode;
 }
 
 function createCells(numCells) {
@@ -34,12 +51,12 @@ function createCells(numCells) {
 function resetCells() {
     if (GRID_CONTAINER.children.length != 0) {
         let cells = document.querySelectorAll('.row-cell');
-        cells.forEach(cell => container.removeChild(cell));
+        cells.forEach(cell => GRID_CONTAINER.removeChild(cell));
     }
 }
 
 function getUserInput() {
-    let parsedInput = DEFAULT_GRID_LENGTH; // default value of 16
+    let parsedInput = DEFAULT_GRID_LENGTH;
     do {
         let userInput = prompt("Enter a grid size (from 1 to 100, inclusive!)");
         parsedInput = parseInt(userInput);
@@ -61,9 +78,17 @@ function setUpResetBtn() {
     RESET_BUTTON.addEventListener('click', configureGrid);
 }
 
+function setUpRanColorBtn() {
+    RANDOM_COLOR_TOGGLE_BUTTON.classList.add('random-color-button');
+    RANDOM_COLOR_TOGGLE_BUTTON.textContent = 'Random color!';
+    RANDOM_COLOR_TOGGLE_BUTTON.addEventListener('click', toggleRandomColor);
+}
+
 function initPage() {
     setUpResetBtn();
+    setUpRanColorBtn();
     BODY.insertBefore(RESET_BUTTON, GRID_CONTAINER);
+    BODY.insertBefore(RANDOM_COLOR_TOGGLE_BUTTON, GRID_CONTAINER);
     configureGrid();
 }
 
