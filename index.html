@@ -7,6 +7,25 @@
         <title>Etch-a-Sketch</title>
     </head>
     <body>
+        <div class="buttons-container">
+            <div class="color-container brush-color">
+                <div class="wrapper brush-color">
+                    <input type="color" id="brush-color">
+                </div>
+                <label for="brush-color">Brush color</label>
+            </div>
+            <div class="color-container bucket-color">
+                <div class="wrapper bucket-color">
+                    <input type="color" id="bucket-color">
+                </div>
+                <button class="bucket-button">Spill!</button>
+                <label for="bucket-color">Bucket color</label>
+            </div>
+            <button class="random-color-button">Random color off</button>
+            <div class="slider-container">
+                <input type="range" min="1" max="100" class="slider">
+            </div>
+        </div>
         <div class="grid-container"></div>
     </body>
 </html>
