@@ -31,20 +31,28 @@ function createCells(numCells) {
     }
 }
 
-function configureGrid() {
-    do {
-        let userInput = prompt("Enter a grid size (from 1 to 100, inclusive!)");
-        parsedInput = parseInt(userInput);
-    } while (!parsedInput || parsedInput < 1 || parsedInput > 100);
-    
+function resetCells() {
     if (GRID_CONTAINER.children.length != 0) {
         let cells = document.querySelectorAll('.row-cell');
         cells.forEach(cell => container.removeChild(cell));
     }
-    gridLength = parsedInput;
+}
+
+function getUserInput() {
+    let parsedInput = 16; // default value of 16
+    do {
+        let userInput = prompt("Enter a grid size (from 1 to 100, inclusive!)");
+        parsedInput = parseInt(userInput);
+    } while (!parsedInput || parsedInput < 1 || parsedInput > 100);
+    return parsedInput;
+}
+
+function configureGrid() {
+    resetCells();
+    gridLength = getUserInput();
+
     GRID_CONTAINER.setAttribute("style", `grid-template-columns: repeat(${gridLength}, 1fr`);
     let numCells = gridLength * gridLength;
-    
     createCells(numCells);
 }
 
