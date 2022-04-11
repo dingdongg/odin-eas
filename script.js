@@ -66,7 +66,7 @@ function getUserInput() {
 function configureGrid() {
     resetCells();
     gridLength = getUserInput();
-    GRID_CONTAINER.setAttribute("style", `grid-template-columns: repeat(${gridLength}, 1fr`);
+    GRID_CONTAINER.setAttribute("style", `grid-template-columns: repeat(${gridLength}, 1fr);`);
     let numCells = gridLength * gridLength;
     createCells(numCells);
 }
@@ -104,10 +104,17 @@ function appendColorLabels() {
     backgroundLabel.textContent = 'Background Color';
     backgroundLabel.for = `${BACK_COLOR_SELECTOR.id}`;
 
-    BUTTONS_CONTAINER.appendChild(BRUSH_COLOR_SELECTOR);
-    BUTTONS_CONTAINER.appendChild(brushLabel);
-    BUTTONS_CONTAINER.appendChild(BACK_COLOR_SELECTOR);
-    BUTTONS_CONTAINER.appendChild(backgroundLabel);
+    let brushContainer = document.createElement('div');
+    brushContainer.classList.add('color-container');
+    brushContainer.appendChild(BRUSH_COLOR_SELECTOR);
+    brushContainer.appendChild(brushLabel);
+    BUTTONS_CONTAINER.appendChild(brushContainer);
+
+    let backgroundContainer = document.createElement('div');
+    backgroundContainer.classList.add('color-container');
+    backgroundContainer.appendChild(BACK_COLOR_SELECTOR);
+    backgroundContainer.appendChild(backgroundLabel);
+    BUTTONS_CONTAINER.appendChild(backgroundContainer);
 }
 
 function setUpBtnContainer() {
