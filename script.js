@@ -2,7 +2,6 @@
  * TODO: make it look prettier
  * TODO: add brush color selector
  * TODO: optional random color 
- * TODO: refactor code
  * TODO: replace prompt() functionality w/ something less annoying
  */
 
@@ -10,6 +9,7 @@
 const RESET_BUTTON = document.createElement('button');
 const GRID_CONTAINER = document.querySelector('.grid-container');
 const BODY = document.querySelector('body');
+const DEFAULT_GRID_LENGTH = 16;
 let gridLength;
 let parsedInput;
 
@@ -39,18 +39,17 @@ function resetCells() {
 }
 
 function getUserInput() {
-    let parsedInput = 16; // default value of 16
+    let parsedInput = DEFAULT_GRID_LENGTH; // default value of 16
     do {
         let userInput = prompt("Enter a grid size (from 1 to 100, inclusive!)");
         parsedInput = parseInt(userInput);
-    } while (!parsedInput || parsedInput < 1 || parsedInput > 100);
+    } while (!parsedInput || parsedInput < 1 || parsedInput > 100); // beyond 100 grid length, performance issues spike up
     return parsedInput;
 }
 
 function configureGrid() {
     resetCells();
     gridLength = getUserInput();
-
     GRID_CONTAINER.setAttribute("style", `grid-template-columns: repeat(${gridLength}, 1fr`);
     let numCells = gridLength * gridLength;
     createCells(numCells);

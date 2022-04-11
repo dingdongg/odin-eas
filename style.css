@@ -2,11 +2,15 @@
     width: 500px;
     height: 500px;
     display: grid;
+
+    /* centers grid container in the middle of screen */
     position: absolute;
     top: 50%;
     left: 50%;
     margin-left: -250px;
     margin-top: -250px;
+
+    /* shadow effects around container */
     box-shadow: 0px 0px 5px grey;
 }
 
