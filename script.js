@@ -3,8 +3,25 @@ let GRID_LENGTH;
 let container;
 configureGrid();
 
+// HTML element handles
+const RESET_BUTTON = document.createElement('button');
+const BODY = document.querySelector('body');
+const GRID_CONTAINER = document.querySelector('.grid-container');
+
+
+/**
+ * sections of code
+ * 1. element variables
+ * 2. functions
+ * 3. code to get website up and running
+ */
+
 /**
  * TODO: make it look prettier
+ * TODO: add brush color selector
+ * TODO: optional random color 
+ * TODO: refactor code
+ * TODO: replace prompt() functionality w/ something less annoying
  */
 
 
