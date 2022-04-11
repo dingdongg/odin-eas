@@ -3,7 +3,13 @@ let GRID_LENGTH;
 let container;
 configureGrid();
 
+/**
+ * TODO: make it look prettier
+ */
+
+
 let resetButton = document.createElement('button');
+resetButton.classList.add('reset-button');
 resetButton.textContent = 'Reset grid';
 resetButton.addEventListener('click', configureGrid);
 let body = document.querySelector('body');
