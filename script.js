@@ -1,37 +1,43 @@
-// create a 16 x 16 grid of SQUARE <div>s
 let parsedInput;
-do {
-    let userInput = prompt("Enter a grid size (from 1 to 100, inclusive!)");
-    parsedInput = parseInt(userInput);
-} while (parsedInput == NaN || parsedInput < 1 || parsedInput > 100);
+let GRID_LENGTH;
+let container;
+configureGrid();
 
-let GRID_LENGTH = parsedInput;
+let resetButton = document.createElement('button');
+resetButton.textContent = 'Reset grid';
+resetButton.addEventListener('click', configureGrid);
+let body = document.querySelector('body');
+body.insertBefore(resetButton, container);
 
 function changeColor() {
-    this.classList.toggle('hovered');
-}
-
-let container = document.querySelector('.grid-container');
-
-// for each row, create GRID_LENGTH divs
-for (let i = 0; i < GRID_LENGTH; i++) {
-    let rowStartDiv = document.createElement('div');
-    rowStartDiv.classList.add("row");
-    for (let j = 0; j < GRID_LENGTH; j++) {
-        let toAppend = document.createElement('div');
-        toAppend.classList.add("row-cell");
-        rowStartDiv.appendChild(toAppend);
+    let classes = this.classList.value;
+    console.log(classes);
+    if (!classes.includes('hovered')) {
+        this.classList.toggle('hovered');
     }
-    container.appendChild(rowStartDiv);
 }
 
-let cells = document.querySelectorAll('.row-cell');
+function configureGrid() {
+    do {
+        let userInput = prompt("Enter a grid size (from 1 to 100, inclusive!)");
+        parsedInput = parseInt(userInput);
+    } while (!parsedInput || parsedInput < 1 || parsedInput > 100);
 
-cells.forEach(cell => {
-    cell.addEventListener('mouseenter', changeColor)
-});
-
-cells.forEach(cell => {
-    cell.addEventListener('mouseleave', changeColor)
-});
+    container = document.querySelector('.grid-container');
+    
+    if (container.children.length != 0) {
+        let cells = document.querySelectorAll('.row-cell');
+        cells.forEach(cell => container.removeChild(cell));
+    }
+    GRID_LENGTH = parsedInput;
+    container.setAttribute("style", `grid-template-columns: repeat(${GRID_LENGTH}, 1fr`);
+    let numCells = GRID_LENGTH * GRID_LENGTH;
+    
+    for (let i = 0; i < numCells; i++) {
+        let cell = document.createElement('div');
+        cell.classList.add("row-cell");
+        cell.addEventListener('mouseenter', changeColor);
+        container.appendChild(cell);
+    }
+}
 
