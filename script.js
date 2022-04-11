@@ -95,6 +95,11 @@ function setUpSelectors() {
     // set up background color selector
 }
 
+function applyBucket() {
+    let cells = document.querySelectorAll('.row-cell');
+    cells.forEach(cell => cell.setAttribute("style", `background-color: ${BACK_COLOR_SELECTOR.value};`));
+}
+
 function appendColorLabels() {
     let brushLabel = document.createElement('label');
     brushLabel.textContent = 'Brush Color';
@@ -110,9 +115,15 @@ function appendColorLabels() {
     brushContainer.appendChild(brushLabel);
     BUTTONS_CONTAINER.appendChild(brushContainer);
 
+    let bucketButton = document.createElement('button');
+    bucketButton.classList.add('bucket-button');
+    bucketButton.textContent = "Bucket";
+    bucketButton.addEventListener('click', applyBucket);
+
     let backgroundContainer = document.createElement('div');
     backgroundContainer.classList.add('color-container');
     backgroundContainer.appendChild(BACK_COLOR_SELECTOR);
+    backgroundContainer.appendChild(bucketButton);
     backgroundContainer.appendChild(backgroundLabel);
     BUTTONS_CONTAINER.appendChild(backgroundContainer);
 }

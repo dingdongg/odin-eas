@@ -34,13 +34,10 @@ body {
     max-height: 500px;
     display: grid;
 
-
-    
-
     /* shadow effects around container */
     box-shadow: 0px 0px 5px grey;
 }
 
 .row-cell {
-    background-color: green;
+    background-color: white;
 }
