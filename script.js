@@ -1,7 +1,6 @@
 /**
  * TODO: make it look prettier
  * TODO: add brush color selector
- * TODO: optional random color 
  * TODO: replace prompt() functionality w/ something less annoying
  * 
  * 
@@ -12,10 +11,13 @@
 // global variables 
 const RESET_BUTTON = document.createElement('button');
 const RANDOM_COLOR_TOGGLE_BUTTON = document.createElement('button');
+const BRUSH_COLOR_SELECTOR = document.createElement('input');
+const BACK_COLOR_SELECTOR = document.createElement('input');
+
 const GRID_CONTAINER = document.querySelector('.grid-container');
 const BODY = document.querySelector('body');
 const DEFAULT_GRID_LENGTH = 16;
-let gridLength;
+let gridLength = DEFAULT_GRID_LENGTH;
 let randomColorMode = false;
 
 // functions
@@ -84,11 +86,40 @@ function setUpRanColorBtn() {
     RANDOM_COLOR_TOGGLE_BUTTON.addEventListener('click', toggleRandomColor);
 }
 
+function setUpSelectors() {
+    // set up brush selector
+    BRUSH_COLOR_SELECTOR.type = 'color';
+    BRUSH_COLOR_SELECTOR.id = 'brush-color';
+    BRUSH_COLOR_SELECTOR.value = '#ffffff';
+    
+    BACK_COLOR_SELECTOR.type = 'color';
+    BACK_COLOR_SELECTOR.id = 'background-color';
+    BACK_COLOR_SELECTOR.value = '#000000';
+    // set up background color selector
+}
+
+function appendColorLabels() {
+    let brushLabel = document.createElement('label');
+    brushLabel.textContent = 'Brush Color';
+    brushLabel.for = `${BRUSH_COLOR_SELECTOR.id}`;
+
+    let backgroundLabel = document.createElement('label');
+    backgroundLabel.textContent = 'Background Color';
+    backgroundLabel.for = `${BACK_COLOR_SELECTOR.id}`;
+
+    BODY.insertBefore(BRUSH_COLOR_SELECTOR, GRID_CONTAINER);
+    BODY.insertBefore(brushLabel, GRID_CONTAINER);
+    BODY.insertBefore(BACK_COLOR_SELECTOR, GRID_CONTAINER);
+    BODY.insertBefore(backgroundLabel, GRID_CONTAINER);
+}
+
 function initPage() {
     setUpResetBtn();
     setUpRanColorBtn();
+    setUpSelectors();
     BODY.insertBefore(RESET_BUTTON, GRID_CONTAINER);
     BODY.insertBefore(RANDOM_COLOR_TOGGLE_BUTTON, GRID_CONTAINER);
+    appendColorLabels();
     configureGrid();
 }
 
