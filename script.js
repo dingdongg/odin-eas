@@ -1,6 +1,5 @@
 /**
  * TODO: make it look prettier
- * TODO: add brush color selector
  * TODO: replace prompt() functionality w/ something less annoying
  * 
  * 
@@ -28,9 +27,9 @@ function changeColor() {
         let greenVal = Math.random() * 255;
         this.setAttribute("style", `background-color: rgb(${redVal}, ${blueVal}, ${greenVal});`);
     } else {
-        this.setAttribute("style", `background-color: lightblue;`);
+        this.setAttribute("style", `background-color: ${BRUSH_COLOR_SELECTOR.value};`);
     }
-}
+}   
 
 function toggleRandomColor() {
     if (randomColorMode) {
@@ -90,11 +89,11 @@ function setUpSelectors() {
     // set up brush selector
     BRUSH_COLOR_SELECTOR.type = 'color';
     BRUSH_COLOR_SELECTOR.id = 'brush-color';
-    BRUSH_COLOR_SELECTOR.value = '#ffffff';
+    BRUSH_COLOR_SELECTOR.value = '#000000';
     
     BACK_COLOR_SELECTOR.type = 'color';
     BACK_COLOR_SELECTOR.id = 'background-color';
-    BACK_COLOR_SELECTOR.value = '#000000';
+    BACK_COLOR_SELECTOR.value = '#ffffff';
     // set up background color selector
 }
 
