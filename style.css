@@ -11,11 +11,15 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border-radius: 100%;
-    box-shadow: 0px 0px 5px grey;
 }
 
-.color-container > input {
+.wrapper {
+    border-radius: 100%;
+    box-shadow: 0px 0px 5px grey;
+    margin-bottom: 10px;
+}
+
+.bucket-button {
     margin-bottom: 10px;
 }
 
@@ -48,5 +52,6 @@ input[type='color'] {
     border: none;
     width: 32px;
     height: 32px;
+    /* border-radius: 100%; */
     opacity: 0;
 }
