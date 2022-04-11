@@ -9,6 +9,7 @@ const RESET_BUTTON = document.createElement('button');
 const RANDOM_COLOR_TOGGLE_BUTTON = document.createElement('button');
 const BRUSH_COLOR_SELECTOR = document.createElement('input');
 const BACK_COLOR_SELECTOR = document.createElement('input');
+const RESOLUTION_SLIDER = document.createElement('input');
 
 const BUTTONS_CONTAINER = document.createElement('div');
 const GRID_CONTAINER = document.querySelector('.grid-container');
@@ -65,7 +66,7 @@ function getUserInput() {
 
 function configureGrid() {
     resetCells();
-    gridLength = getUserInput();
+    // gridLength = getUserInput();
     GRID_CONTAINER.setAttribute("style", `grid-template-columns: repeat(${gridLength}, 1fr);`);
     let numCells = gridLength * gridLength;
     createCells(numCells);
@@ -133,11 +134,32 @@ function setUpBtnContainer() {
     BUTTONS_CONTAINER.classList.add('buttons-container');
     appendColorLabels();
     BUTTONS_CONTAINER.appendChild(RANDOM_COLOR_TOGGLE_BUTTON);
-    BUTTONS_CONTAINER.appendChild(RESET_BUTTON);
+    // BUTTONS_CONTAINER.appendChild(RESET_BUTTON);
+    BUTTONS_CONTAINER.appendChild(RESOLUTION_SLIDER);
+}
+
+function updateResolution() {
+    gridLength = parseInt(this.value);
+    configureGrid();
+}
+
+function setUpResSlider() {
+    let sliderDiv = document.createElement('div');
+    sliderDiv.classList.add('slider-container');
+
+    RESOLUTION_SLIDER.type = 'range';
+    RESOLUTION_SLIDER.min = '1';
+    RESOLUTION_SLIDER.max = '100';
+    RESOLUTION_SLIDER.value = `${DEFAULT_GRID_LENGTH}`;
+    RESOLUTION_SLIDER.classList.add('slider');
+    RESOLUTION_SLIDER.addEventListener('change', updateResolution);
+
+    sliderDiv.appendChild(RESOLUTION_SLIDER);
 }
 
 function initPage() {
-    setUpResetBtn();
+    // setUpResetBtn();
+    setUpResSlider();
     setUpRanColorBtn();
     setUpSelectors();
     setUpBtnContainer();
