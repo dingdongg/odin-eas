@@ -93,8 +93,15 @@ function appendColorLabels() {
     bucketContainer.setAttribute("style", `background-color: ${BUCKET_COLOR_SELECTOR.value};`);
 }
 
+function updateResLabel() {
+    let sliderLabel = document.querySelector('.slider-label');
+    console.log(sliderLabel);
+    sliderLabel.textContent = `Resolution: ${gridLength} × ${gridLength}`;
+}
+
 function updateResolution() {
     gridLength = parseInt(this.value);
+    updateResLabel();
     configureGrid();
 }
 

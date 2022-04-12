@@ -3,12 +3,15 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@200&display=swap" rel="stylesheet">
         <script src="script.js" defer></script>
         <title>Etch-a-Sketch</title>
     </head>
     <body>
         <div class="buttons-container">
-            <h1>Etch-a-Sketch</h1>
+            <h1 class="page-title">Etch-a-Sketch</h1>
             <div class="color-container brush-color">
                 <div class="wrapper brush-color">
                     <input type="color" id="brush-color">
@@ -19,11 +22,12 @@
                 <div class="wrapper bucket-color">
                     <input type="color" id="bucket-color">
                 </div>
-                <button class="bucket-button">Spill!</button>
+                <button class="bucket-button button-text">Spill!</button>
                 <label for="bucket-color">Bucket color</label>
             </div>
-            <button class="random-color-button">Random color off</button>
+            <button class="random-color-button button-text">Random color off</button>
             <div class="slider-container">
+                <label class="slider-label">Resolution: 16 × 16</label>
                 <input type="range" min="1" max="100" class="slider">
             </div>
         </div>
