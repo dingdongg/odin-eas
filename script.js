@@ -1,5 +1,4 @@
 /**
- * TODO: finish buttons CSS
  * TODO: color in pixel only when: a) mouse is passing thru, AND b) mouse is being held down
  */
 
@@ -8,8 +7,8 @@ const RANDOM_COLOR_TOGGLE_BUTTON = document.querySelector('.random-color-button'
 const BRUSH_COLOR_SELECTOR = document.querySelector("#brush-color");
 const BUCKET_COLOR_SELECTOR = document.querySelector("#bucket-color");
 const RESOLUTION_SLIDER = document.querySelector(".slider");
-
 const GRID_CONTAINER = document.querySelector('.grid-container');
+
 const DEFAULT_GRID_LENGTH = 16;
 let gridLength = DEFAULT_GRID_LENGTH;
 let randomColorMode = false;
@@ -82,7 +81,7 @@ function applyBucket() {
     cells.forEach(cell => cell.setAttribute("style", `background-color: ${BUCKET_COLOR_SELECTOR.value};`));
 }
 
-function appendColorLabels() {
+function colorSelectors() {
     let brushContainer = BRUSH_COLOR_SELECTOR.parentElement;
     brushContainer.setAttribute("style", `background-color: ${BRUSH_COLOR_SELECTOR.value};`);
 
@@ -112,7 +111,7 @@ function setUpResSlider() {
 
 function initPage() {
     setUpSelectors();
-    appendColorLabels();
+    colorSelectors();
     setUpRanColorBtn();
     setUpResSlider();
     configureGrid();
