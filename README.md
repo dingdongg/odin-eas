@@ -10,7 +10,7 @@ Find you canvas "too" pixelated? Play around with the resolution slider :)
 
 ## Link to website
 
-Check it out [here](https://dingdongg.github.io/odin-eas/)!
+Check it out <a href="https://dingdongg.github.io/odin-eas/" target="_blank">here</a>!
 
 ## Future ideas
 
