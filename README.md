@@ -4,9 +4,9 @@
 
 Etch-a-Sketch is a website where you can create pixel drawings. The website features a simple GUI with a few buttons and a drawing canvas.
 
-Using a combination of the customizable brush, bucket, and random coloring mode, you can draw just about anything you can think of! Start coloring on the canvas by simply moving your mouse over the pixels you want to color in.
+Using a combination of the customizable brush, bucket, and random coloring mode, you can draw just about anything you can think of! Start coloring the canvas simply by moving your mouse over the pixels you want to color in.
 
-Find you canvas "too" pixelated? Play around with the resolution slider :)
+Finding your canvas "too" pixelated? Play around with the resolution slider :)
 
 ## Link to website
 
