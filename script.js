@@ -1,7 +1,3 @@
-/**
- * TODO: color in pixel only when: a) mouse is passing thru, AND b) mouse is being held down
- */
-
 // global variables 
 const RANDOM_COLOR_TOGGLE_BUTTON = document.querySelector('.random-color-button');
 const BRUSH_COLOR_SELECTOR = document.querySelector("#brush-color");
